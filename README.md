@@ -95,13 +95,26 @@ Kubernetes constantly works to match the **Actual State** to the **Desired State
 
 ## 7. Services & Networking
 
-### Service Type Comparison
+### 📋 Kubernetes Service Types Comparison Table
 
-| Feature | ClusterIP (Default) | NodePort | LoadBalancer |
-| :--- | :--- | :--- | :--- |
-| **Access** | Internal only | External + Internal | Cloud External |
+| Feature | ClusterIP (Default) | NodePort | LoadBalancer | ExternalName |
+| :--- | :--- | :--- | :--- | :--- |
+| **Access Scope** | 🔒 Internal only | 🌍 External + Internal | ☁️ External + Internal | ↗️ Internal to External |
+| **IP Address** | Single Virtual Cluster IP | Node IP + Static Port | External (Public) IP | DNS Name (CNAME) |
+| **Port Range** | Any port | 30000 - 32767 | Any port | N/A |
+| **Primary Use Case** | Inter-service communication | Testing/Debug access | Production workloads | Alias for external services |
+| **Cloud Integration** | Not required | Not required | **Required** (AWS, GCP, etc.) | Not required |
+
+---
+
+#### 💡 Quick Summary for Selection:
+* **Use ClusterIP** for internal communication between your microservices (e.g., Backend to DB).
+* **Use NodePort** for temporary exposure or when a cloud load balancer is not available.
+* **Use LoadBalancer** for production-grade applications that need to be reachable from the internet.
+* **Use ExternalName** to create an alias for a service that exists outside the cluster (e.g., an external RDS instance).
 
 #### Visualizing Network Flows:
+
 **NodePort:**
 
 <img width="491" src="https://github.com/user-attachments/assets/853df695-1c44-429f-a6c8-7dc8e458b28e" />
