@@ -136,6 +136,10 @@ Kubernetes constantly works to match the **Actual State** to the **Desired State
 
 **Ingress** routes external HTTP/HTTPS traffic using host or path-based rules.
 
+Exact: Only requests that exactly match the specified path comply with this rule.
+Prefix: All requests beginning with the specified path prefix comply with this rule.
+ImplementationSpecific: The mapping of this value depends on the IngressClass. Applications may treat this as a separate pathType or handle it in the same way as Prefix or Exact path types.
+
 ### Path Matching Types
 | Path Type | Description |
 | :--- | :--- |
@@ -146,13 +150,13 @@ Kubernetes constantly works to match the **Actual State** to the **Desired State
 
 ---
 
-## 9. Advanced Networking: Egress & CNI
+## 9. Advanced Networking: Egress & Container Network Interface (CNI)
 
 ### Egress
 Traffic flowing **outwards** from a Pod to external destinations (APIs, DBs).
 
 ### CNI (Container Network Interface)
-Standard for configuring network interfaces in containers.
+Kubernetes CNI (Container Network Interface) is a standard used to create and manage container networks. It configures network connectivity throughout the container lifecycle and enables Pods to communicate with each other and the outside world.
 
 ---
 
@@ -162,12 +166,20 @@ Standard for configuring network interfaces in containers.
 * **Egress:** Traffic **OUT**.
 * **CNI:** **INTERNAL** communication.
 
-### 📋 CNI Driver Metrics
-| Provider | Stars ⭐ | Forks 🍴 | Contributors 👥 |
-| :--- | :---: | :---: | :---: |
-| **Cilium** | 22.7k | 3.4k | 1,002 |
-| **Flannel** | 9.3k | 2.9k | 243 |
-| **Calico** | 6.8k | 1.5k | 387 |
+### 📋 Kubernetes CNI Provider Metrics
+
+Below is a comparison of the most popular Container Network Interface (CNI) plugins based on community activity and project health:
+
+| Provider | Project Link | Stars ⭐ | Forks 🍴 | Contributors 👥 |
+| :--- | :--- | :---: | :---: | :---: |
+| **Cilium** | [github.com/cilium/cilium](https://github.com/cilium/cilium) | 22.7k | 3.4k | 1,002 |
+| **Flannel** | [github.com/flannel-io/flannel](https://github.com/flannel-io/flannel) | 9.3k | 2.9k | 243 |
+| **Calico** | [github.com/projectcalico/calico](https://github.com/projectcalico/calico) | 6.8k | 1.5k | 387 |
+| **Weave** | [github.com/weaveworks/weave](https://github.com/weaveworks/weave) | 6.6k | 679 | 84 |
+| **Canal** | [github.com/projectcalico/canal](https://github.com/projectcalico/canal) | 721 | 98 | 20 |
+
+> [!TIP]
+> **Cilium** is currently the industry leader for high-performance networking thanks to its **eBPF** technology, while **Calico** remains the go-to for advanced **Network Policies**.
 
 <img width="775" src="https://github.com/user-attachments/assets/0d5d9857-e30a-4b39-9011-985a4aaa2c7c" />
 
