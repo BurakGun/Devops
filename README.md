@@ -17,7 +17,10 @@ Welcome to the comprehensive guide on modern deployment strategies and Kubernete
 - [12. Container Storage Interface (CSI)](#12-container-storage-interface-csi)
 - [13. Configuration & Secrets](#13-configuration--secrets)
 - [14. Deployment Methodologies](#14-deployment-methodologies)
-
+- [15. Pod Lifecycle & Health Checks](#15-pod-lifecycle--health-checks)
+- [16. Resource Management (Requests & Limits)](#16-resource-management-requests--limits)
+- [17. Security: RBAC (Role-Based Access Control)](#17-security-rbac-role-based-access-control)
+- [18. Kubectl Cheat Sheet](#18-kubectl-cheat-sheet)
 ---
 
 ## 1. Evolution of Deployment
@@ -241,5 +244,43 @@ Sensitive data (passwords, keys).
 **Declarative:**
 
 <img width="241" src="https://github.com/user-attachments/assets/8e1e91ae-45fa-4f13-b8a8-0035a8909c4d" />
+
+---
+## 15. Pod Lifecycle & Health Checks
+
+| Status | Description |
+| :--- | :--- |
+| **Pending** | Pod accepted, but containers not yet running. |
+| **Running** | Containers created and at least one is running. |
+| **Failed** | At least one container exited with error. |
+
+* **Liveness Probe:** Checks if the app is alive (restarts if fails).
+* **Readiness Probe:** Checks if ready to serve traffic.
+
+---
+
+## 16. Resource Management (Requests & Limits)
+
+* **Requests:** Minimum resources needed to start.
+* **Limits:** Maximum resources allowed to consume.
+
+---
+
+## 17. Security: RBAC (Role-Based Access Control)
+
+1. **Role:** Permissions within a **Namespace**.
+2. **ClusterRole:** Permissions across the **entire Cluster**.
+3. **RoleBinding:** Connects user to a Role.
+
+---
+
+## 18. Kubectl Cheat Sheet
+
+| Action | Command |
+| :--- | :--- |
+| **Status** | `kubectl get pods`, `kubectl get nodes` |
+| **Debug** | `kubectl describe pod <name>`, `kubectl logs <name>` |
+| **Apply** | `kubectl apply -f <file.yaml>` |
+| **Interactive** | `kubectl exec -it <pod-name> -- /bin/bash` |
 
 ---
